@@ -9,13 +9,14 @@ import {
   concat,
 } from '@apollo/client';
 import './Styles/index.css';
+import { getCookie } from 'helpers';
 
 export default function App() {
   const httpLink = createHttpLink({
     uri: 'http://localhost:4000/graphql',
   });
   const middleware = new ApolloLink((operation: any, forward: any) => {
-    let cookie = document.cookie;
+    const cookie = getCookie('token');
     if (cookie !== '') {
       operation.setContext({
         headers: {

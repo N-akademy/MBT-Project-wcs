@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { ApolloError, useMutation } from '@apollo/client';
 import { LOGIN } from 'Hooks/useLogin';
 import { useNavigate } from 'react-router-dom';
+import { setCookie } from '../helpers';
 
 export default function LoginForm(): JSX.Element {
   // State
@@ -22,7 +23,7 @@ export default function LoginForm(): JSX.Element {
         hashedPassword: loginForm.hashedPassword,
       },
     });
-    document.cookie = `token=${res?.data?.login}`;
+    setCookie('token', res?.data?.login);
     navigate('/');
   };
 
