@@ -8,13 +8,13 @@ import UsersDropDown from "../../src/Components/UsersDropDown";
 
 describe("Components mount without crashing", () => {
   it("Navbar", () => {
-    cy.cyrilmount(<Navbar />);
+    cy.overMount(<Navbar />);
   });
   it("SearchBar", () => {
-    cy.cyrilmount(<SearchBar />);
+    cy.overMount(<SearchBar />);
   });
   it("ProjectCreationForm", () => {
-    cy.cyrilmount(<ProjectCreationForm />);
+    cy.overMount(<ProjectCreationForm />);
   });
   it("ProjectList", () => {
     const mokedData = [
@@ -34,7 +34,7 @@ describe("Components mount without crashing", () => {
         start_time: "2022-06-15T00:00:00.000Z",
       },
     ];
-    cy.cyrilmount(<ProjectList projects={mokedData} />);
+    cy.overMount(<ProjectList projects={mokedData} />);
   });
   it("ProjectItem", () => {
     const mokedData = {
@@ -43,12 +43,12 @@ describe("Components mount without crashing", () => {
       start_time: "2022-06-15T00:00:00.000Z",
       description: "Project 1 description",
     };
-    cy.cyrilmount(<ProjectItem {...mokedData} />);
+    cy.overMount(<ProjectItem {...mokedData} />);
   });
   it("TicketCreationForm", () => {
-    cy.cyrilmount(<TicketCreationForm />);
+    cy.overMount(<TicketCreationForm />);
   });
   it("UsersDropDown", () => {
-    cy.cyrilmount(<UsersDropDown />);
+    cy.overMount(<UsersDropDown />);
   });
 });

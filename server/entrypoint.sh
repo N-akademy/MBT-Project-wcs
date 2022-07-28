@@ -1,5 +1,12 @@
+#!/bin/sh
+echo "#RUNNING PRISMA GENERATE#"
 npx prisma generate &
-wait
+PID=$!
+wait $PID
+echo "#RUNNING PRISMA MIGRATE#"
 npx prisma migrate dev &
-wait
+PID2=$!
+wait $PID2
+echo "#START SERVER#"
 yarn start
+

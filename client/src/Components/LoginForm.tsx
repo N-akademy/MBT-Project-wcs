@@ -59,6 +59,7 @@ export default function LoginForm(): JSX.Element {
             <div className="w-2/3 flex flex-col py-2">
               <label className="pb-1">Email</label>
               <input
+                id="email"
                 className="border border-gray-400 rounded p-1"
                 placeholder="📧 you@example.com"
                 value={loginForm.email}
@@ -70,6 +71,7 @@ export default function LoginForm(): JSX.Element {
             <div className="w-2/3 flex flex-col py-2">
               <label className="pb-1">Password</label>
               <input
+                id="password"
                 className="border border-gray-400 rounded p-1"
                 placeholder="🔑"
                 value={loginForm.hashedPassword}
@@ -81,6 +83,7 @@ export default function LoginForm(): JSX.Element {
 
             <div className="w-2/3 flex flex-col pt-8">
               <button
+                id="send"
                 type="submit"
                 className="border border-gray-400 p-1 rounded"
               >
@@ -89,13 +92,22 @@ export default function LoginForm(): JSX.Element {
             </div>
             <div className="w-2/3 flex flex-row pt-8">
               <div className="w-1/2 mr-3">
-                <button className="w-full border border-gray-400 p-1 rounded">
-                  Forgot
+                <button
+                  id="forgot"
+                  type="button"
+                  className="w-full border border-gray-400 p-1 rounded"
+                >
+                  Forgot Credentials
                 </button>
               </div>
               <div className="w-1/2 ml-3">
-                <button className="w-full border border-gray-400 p-1 rounded">
-                  Sign In
+                <button
+                  id="register"
+                  type="button"
+                  className="w-full border border-gray-400 p-1 rounded"
+                  onClick={() => navigate('/register')}
+                >
+                  Sign UP
                 </button>
               </div>
             </div>

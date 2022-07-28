@@ -15,14 +15,17 @@ export default function App() {
   const httpLink = createHttpLink({
     uri: 'http://localhost:4000/graphql',
   });
+
   const middleware = new ApolloLink((operation: any, forward: any) => {
     const cookie = getCookie('token');
+    console.log(cookie);
     if (cookie !== '') {
       operation.setContext({
         headers: {
-          Authorization: cookie.substring(6, cookie.length),
+          Authorization: cookie,
         },
       });
+      return forward(operation);
     }
     return forward(operation);
   });

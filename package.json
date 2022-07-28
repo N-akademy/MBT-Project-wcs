@@ -11,9 +11,25 @@
     "client"
   ],
   "scripts": {
-    "start": "concurrently \"yarn workspace server start\" \"yarn workspace client start\""
+    "start": "concurrently \"yarn workspace server start\" \"yarn workspace client start\"",
+    "cy:run": "cypress run",
+    "test": "start-server-and-test start http://localhost:3000 cy:run",
+    "up": "docker compose -f docker-compose.dev.yml up -d --build",
+    "down": "docker-compose -f docker-compose.dev.yml down"
   },
   "devDependencies": {
     "concurrently": "^7.1.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
