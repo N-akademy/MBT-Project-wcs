@@ -9,4 +9,3 @@ PID2=$!
 wait $PID2
 echo "#START SERVER#"
 yarn start
-

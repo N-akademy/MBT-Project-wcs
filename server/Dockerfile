@@ -14,9 +14,8 @@ COPY tsconfig.json ./
 COPY index.ts ./
 COPY db.ts ./
 COPY entrypoint.sh ./
-RUN chmod +x entrypoint.sh
 EXPOSE 4000
-ENTRYPOINT [ "./entrypoint.sh" ]
+ENTRYPOINT [ "bash", "./entrypoint.sh" ]
 
 # RUN tsc
 
