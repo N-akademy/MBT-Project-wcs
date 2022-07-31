@@ -11,6 +11,7 @@ RUN yarn global add typescript
 COPY gql ./gql/
 COPY prisma ./prisma/
 COPY tsconfig.json ./
+COPY .env ./
 COPY index.ts ./
 COPY db.ts ./
 COPY entrypoint.sh ./
