@@ -26,7 +26,7 @@ export const typeDefs = gql`
     description: String
     start_time: Date!
     end_time: Date
-    status: StatusEnum!
+    status: String # StatusEnum
     #//! Foreign Key
     #//* One To One
     Project_Picture: Picture
@@ -42,7 +42,7 @@ export const typeDefs = gql`
     description: String
     estimated_time: Int
     spent_time: Int
-    status: StatusEnum!
+    status: String # StatusEnum
     labels: String
     priority: String
     difficulty: String
@@ -114,11 +114,11 @@ export const typeDefs = gql`
   }
   #//* ----------------  END DEFINING INPUTS  ---------------- *//
   #//* ----------------  START DEFINING ENUM  ---------------- *//
-  enum StatusEnum {
-    OPEN
-    IN_PROGRESS
-    CLOSE
-  }
+  #enum StatusEnum {
+  #  OPEN
+  #  IN_PROGRESS
+  #  CLOSE
+  #}
   #//* ----------------  END DEFINING ENUM  ---------------- *//
   #//* ----------------  START DEFINING MUTATIONS  ---------------- *//
   type Mutation {
@@ -155,7 +155,7 @@ export const typeDefs = gql`
       description: String
       start_time: Date!
       end_time: Date
-      status: StatusEnum
+      status: String # StatusEnum
       #//! Foreign Key
       #//* One To One
       Project_Picture: PictureInput
@@ -170,7 +170,7 @@ export const typeDefs = gql`
       description: String
       start_time: Date
       end_time: Date
-      status: StatusEnum
+      status: String #StatusEnum
     ): Project
 
     #//? DELETE A PROJECT
@@ -189,7 +189,7 @@ export const typeDefs = gql`
       description: String
       estimated_time: Int
       spent_time: Int
-      status: StatusEnum
+      status: String # StatusEnum
       labels: String
       priority: String
       difficulty: String
@@ -209,7 +209,7 @@ export const typeDefs = gql`
       description: String
       estimated_time: Int
       spent_time: Int
-      status: StatusEnum
+      status: String # StatusEnum
       labels: String
       priority: String
       difficulty: String

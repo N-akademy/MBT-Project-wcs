@@ -1,25 +1,33 @@
-import React, { useEffect } from "react";
-import IProjet from "../Interfaces/IProject";
-import ProjectItem from "./ProjectItem";
-import { projectListWrapper } from "../Styles/style";
+import React, { useEffect } from 'react';
+import IProjet from '../Interfaces/IProject';
+import ProjectItem from './ProjectItem';
+import { projectListWrapper } from '../Styles/style';
 
 const ProjectList = (props: IProjet[] | any): JSX.Element => {
-
   //add number of users and days left
-  const addValue = (props: IProjet[]): IProjet[] => {
-    for(let i = 0; i < props.length; i++){
-      props[i].numUsers = props[i].user_id.length;
-      props[i].nbTicket = (props[i].Tickets || []).length;
-      props[i].daysLeft = ((props[i].end_time || props[i].start_time).getDate() - props[i].start_time.getDate()).toString();
+  const addValue = (projArray: IProjet[]): IProjet[] => {
+    for (let i = 0; i < projArray.length; i++) {
+      projArray[i].numUsers = projArray[i].user_id.length;
+      projArray[i].nbTicket = (projArray[i].Tickets || []).length;
+      projArray[i].daysLeft = (
+        (projArray[i].end_time || projArray[i].start_time).getDate() -
+        projArray[i].start_time.getDate()
+      ).toString();
     }
-    return props
-  }
+    return projArray;
+  };
   useEffect(() => {
-    addValue(props)
+    addValue(props);
   });
   return (
     <div className="bg-slate-100 grid justify-items-center">
-        <input type="text" placeholder=" Search" className="lg:w-5/12 w-9/12 m-6 rounded-md border h-12" name="" id="" />
+      <input
+        type="text"
+        placeholder=" Search"
+        className="lg:w-5/12 w-9/12 m-6 rounded-md border h-12"
+        name=""
+        id=""
+      />
       {props.projects.map((project: IProjet) => (
         <ProjectItem {...project} key={project.id} />
       ))}

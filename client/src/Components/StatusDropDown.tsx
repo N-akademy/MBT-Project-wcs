@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   inputContainerStyle,
   labelStyle,
@@ -6,24 +6,24 @@ import {
   modalBackgroundStyle,
   modalStyle,
   buttonStyle,
-} from "Styles/style";
+} from 'Styles/style';
 
 function StatusDropDown(props: any): JSX.Element {
   // State
   const [modal, setModal] = React.useState(false);
-  const [newStatus, setNewStatus] = React.useState("");
+  const [newStatus, setNewStatus] = React.useState('');
   const [opts, setOpts] = React.useState([
     {
       id: 0,
-      name: "Open",
+      name: 'OPEN',
     },
     {
       id: 1,
-      name: "In Progress",
+      name: 'IN_PROGRESS',
     },
     {
       id: 2,
-      name: "Close",
+      name: 'CLOSE',
     },
   ]);
 

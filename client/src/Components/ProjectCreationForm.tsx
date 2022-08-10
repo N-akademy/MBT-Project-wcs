@@ -18,7 +18,7 @@ function ProjectCreationForm(): JSX.Element {
   // State
   const [projectName, setProjectName] = useState<string>('');
   const [projectStatus, setProjectStauts] = useState<string>('');
-  const [projectMembers, setProjectMembers] = useState<string>('');
+  const [projectMembers, setProjectMembers] = useState<string>(''); // TODO: change to array of user ids
   const [startDate, setStartDate] = useState<string>(
     moment().format().toString()
   );
@@ -87,13 +87,12 @@ function ProjectCreationForm(): JSX.Element {
         e.preventDefault();
         addProject({
           variables: {
-            id: '$createNewProjectId',
             title: projectName,
             description: desc,
-            start_time: startDate,
+            startTime: '2022-05-17T00:00:00.000Z', // TODO: change to startDate
             end_time: endDate,
             status: projectStatus,
-            user_id: { id: projectMembers },
+            users: [{ id: projectMembers }],
           },
         });
       }}

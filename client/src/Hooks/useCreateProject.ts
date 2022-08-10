@@ -1,17 +1,15 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client';
 
 export const CREATE_PROJECT = gql`
   mutation CreateNewProject(
-    $createNewProjectId: ID!
     $title: String!
     $description: String
     $startTime: Date!
     $endTime: Date
     $status: String
-    $users: UserInput
+    $users: [UserInput]!
   ) {
     createNewProject(
-      id: $createNewProjectId
       title: $title
       description: $description
       start_time: $startTime

@@ -1,10 +1,11 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client';
 
+//StatusEnum
 export const CREATE_TICKET = gql`
   mutation Mutation(
     $title: String!
     $description: String
-    $status: StatusEnum!
+    $status: String!
     $labels: String
     $priority: String
     $difficulty: String
