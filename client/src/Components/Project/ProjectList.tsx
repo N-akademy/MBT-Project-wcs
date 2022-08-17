@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import IProjet from '../Interfaces/IProject';
+import IProjet from '../../Interfaces/IProject';
 import ProjectItem from './ProjectItem';
-import { projectListWrapper } from '../Styles/style';
+import { projectListWrapper } from '../../Styles/style';
 
 const ProjectList = (props: IProjet[] | any): JSX.Element => {
   //add number of users and days left
@@ -21,13 +21,6 @@ const ProjectList = (props: IProjet[] | any): JSX.Element => {
   });
   return (
     <div className="bg-slate-100 grid justify-items-center">
-      <input
-        type="text"
-        placeholder=" Search"
-        className="lg:w-5/12 w-9/12 m-6 rounded-md border h-12"
-        name=""
-        id=""
-      />
       {props.projects.map((project: IProjet) => (
         <ProjectItem {...project} key={project.id} />
       ))}

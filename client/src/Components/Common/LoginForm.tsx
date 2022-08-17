@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { ApolloError, useMutation } from '@apollo/client';
-import { LOGIN } from 'Hooks/useLogin';
+import { LOGIN } from '../../Hooks/Mutation/useLogin';
 import { useNavigate } from 'react-router-dom';
-import { setCookie } from '../helpers';
+import { setCookie } from '../../helpers';
 
 export default function LoginForm(): JSX.Element {
   // State

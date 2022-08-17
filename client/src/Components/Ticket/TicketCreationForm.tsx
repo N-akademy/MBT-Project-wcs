@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { ApolloError, useMutation, useQuery } from "@apollo/client";
-import { CREATE_TICKET } from "../Hooks/useCreateTicket";
-import UsersDropDown from "./UsersDropDown";
+import React, { useState } from 'react';
+import { ApolloError, useMutation, useQuery } from '@apollo/client';
+import { CREATE_TICKET } from '../../Hooks/Mutation/useCreateTicket';
+import UsersDropDown from '../User/UsersDropDown';
 import {
   formContainerStyle,
   inputContainerStyle,
@@ -13,18 +13,18 @@ import {
   errorPageWrapper,
   customCardStyle,
   popUpContainerStyle,
-} from "../Styles/style";
+} from '../../Styles/style';
 
 function TicketCreationForm(): JSX.Element {
   // State
-  const [tskName, setName] = useState<string>("");
-  const [tskStatus, setStatus] = useState<string>("");
-  const [tskLabels, setLabels] = useState<string>("");
-  const [tskProject, setProject] = useState<string>("");
-  const [tskMembers, setMembers] = useState<string>("");
-  const [tskDifficulty, setDifficulty] = useState<string>("");
-  const [tskUrgence, setUrgence] = useState<string>("");
-  const [tskDesc, setDesc] = useState<string>("");
+  const [tskName, setName] = useState<string>('');
+  const [tskStatus, setStatus] = useState<string>('');
+  const [tskLabels, setLabels] = useState<string>('');
+  const [tskProject, setProject] = useState<string>('');
+  const [tskMembers, setMembers] = useState<string>('');
+  const [tskDifficulty, setDifficulty] = useState<string>('');
+  const [tskUrgence, setUrgence] = useState<string>('');
+  const [tskDesc, setDesc] = useState<string>('');
   // eslint-disable-next-line
   const [addTicket, { data, loading, error }] = useMutation(CREATE_TICKET);
   const [popUpState, setPopUpState] = useState<boolean>(false);
@@ -81,7 +81,7 @@ function TicketCreationForm(): JSX.Element {
           onClick={() => window.location.replace(window.location.toString())}
           {...buttonStyle}
         >
-          {"<-"}
+          {'<-'}
         </button>
       </div>
     );
@@ -114,13 +114,13 @@ function TicketCreationForm(): JSX.Element {
       onSubmit={async (e) => {
         // TODO: type params and func return
         e.preventDefault();
-        const newTicketID = "5";
+        const newTicketID = '5';
         const newTicket = {
           createNewTicketId: newTicketID,
           title: tskName,
           users: [
             {
-              id: tskMembers !== "" ? tskMembers : "1",
+              id: tskMembers !== '' ? tskMembers : '1',
             },
           ],
           difficulty: tskDifficulty,
@@ -128,17 +128,17 @@ function TicketCreationForm(): JSX.Element {
           labels: tskLabels,
           status: tskStatus,
           description: tskDesc,
-          projectId: tskProject !== "" ? parseInt(tskProject) : 1,
+          projectId: tskProject !== '' ? parseInt(tskProject) : 1,
         };
         await addTicket({ variables: newTicket });
-        setName("");
-        setStatus("");
-        setLabels("");
-        setProject("");
-        setMembers("");
-        setDifficulty("");
-        setUrgence("");
-        setDesc("");
+        setName('');
+        setStatus('');
+        setLabels('');
+        setProject('');
+        setMembers('');
+        setDifficulty('');
+        setUrgence('');
+        setDesc('');
         setPopUpState(!popUpState);
         // TODO trigger l'affichage d'une popup pour dire que le ticket a bien été créé
       }}
@@ -210,7 +210,7 @@ function TicketCreationForm(): JSX.Element {
                 id="dif1"
                 type="radio"
                 name="difficulty"
-                value={"1"}
+                value={'1'}
                 onChange={(e: any) => HandleDifficultyChanges(e)}
                 {...radioInputStyle}
               ></input>
@@ -223,7 +223,7 @@ function TicketCreationForm(): JSX.Element {
                 id="dif2"
                 type="radio"
                 name="difficulty"
-                value={"2"}
+                value={'2'}
                 onChange={(e: any) => HandleDifficultyChanges(e)}
                 {...radioInputStyle}
               ></input>
@@ -236,7 +236,7 @@ function TicketCreationForm(): JSX.Element {
                 id="dif3"
                 type="radio"
                 name="difficulty"
-                value={"3"}
+                value={'3'}
                 onChange={(e: any) => HandleDifficultyChanges(e)}
                 {...radioInputStyle}
               ></input>
@@ -249,7 +249,7 @@ function TicketCreationForm(): JSX.Element {
                 id="dif4"
                 type="radio"
                 name="difficulty"
-                value={"4"}
+                value={'4'}
                 onChange={(e: any) => HandleDifficultyChanges(e)}
                 {...radioInputStyle}
               ></input>
@@ -262,7 +262,7 @@ function TicketCreationForm(): JSX.Element {
                 id="dif5"
                 type="radio"
                 name="difficulty"
-                value={"5"}
+                value={'5'}
                 onChange={(e: any) => HandleDifficultyChanges(e)}
                 {...radioInputStyle}
               ></input>
@@ -280,7 +280,7 @@ function TicketCreationForm(): JSX.Element {
                 id="urg1"
                 type="radio"
                 name="urgence"
-                value={"1"}
+                value={'1'}
                 onChange={(e: any) => HandleUrgenceChanges(e)}
                 {...radioInputStyle}
               ></input>
@@ -293,7 +293,7 @@ function TicketCreationForm(): JSX.Element {
                 id="urg2"
                 type="radio"
                 name="urgence"
-                value={"2"}
+                value={'2'}
                 onChange={(e: any) => HandleUrgenceChanges(e)}
                 {...radioInputStyle}
               ></input>
@@ -306,7 +306,7 @@ function TicketCreationForm(): JSX.Element {
                 id="urg3"
                 type="radio"
                 name="urgence"
-                value={"3"}
+                value={'3'}
                 onChange={(e: any) => HandleUrgenceChanges(e)}
                 {...radioInputStyle}
               ></input>
@@ -319,7 +319,7 @@ function TicketCreationForm(): JSX.Element {
                 id="urg4"
                 type="radio"
                 name="urgence"
-                value={"4"}
+                value={'4'}
                 onChange={(e: any) => HandleUrgenceChanges(e)}
                 {...radioInputStyle}
               ></input>
@@ -332,7 +332,7 @@ function TicketCreationForm(): JSX.Element {
                 id="urg5"
                 type="radio"
                 name="urgence"
-                value={"5"}
+                value={'5'}
                 onChange={(e: any) => HandleUrgenceChanges(e)}
                 {...radioInputStyle}
               ></input>

@@ -1,7 +1,7 @@
-import React from "react";
-import Navbar from "../Components/Navbar";
-import ProjectCreationForm from "../Components/ProjectCreationForm";
-import { pageWrapper, h2Style } from "../Styles/style";
+import React from 'react';
+import Navbar from '../../Components/Common/Navbar';
+import ProjectCreationForm from '../../Components/Project/ProjectCreationForm';
+import { pageWrapper, h2Style } from '../../Styles/style';
 
 function ProjectCreationPage(): JSX.Element {
   return (

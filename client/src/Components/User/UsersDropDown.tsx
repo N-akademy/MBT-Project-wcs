@@ -1,6 +1,10 @@
 import React from 'react';
-import { useGetUsers } from '../Hooks/useGetUser';
-import { inputContainerStyle, labelStyle, inputStyle } from 'Styles/style';
+import { useGetUsers } from '../../Hooks/Query/useGetUser';
+import {
+  inputContainerStyle,
+  labelStyle,
+  inputStyle,
+} from '../../Styles/style';
 
 function UsersDropDown(props: any): JSX.Element {
   const data = useGetUsers();

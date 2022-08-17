@@ -1,5 +1,5 @@
 import { useState, ChangeEvent } from 'react';
-import { CREATE_USER } from 'Hooks/useCreateUser';
+import { CREATE_USER } from '../../Hooks/Mutation/useCreateUser';
 import { ApolloError, useMutation } from '@apollo/client';
 import IUser from 'Interfaces/IUser';
 
@@ -12,19 +12,8 @@ export default function InscriptionForm(): JSX.Element {
   });
 
   const [addUser, { data, loading, error }] = useMutation(CREATE_USER);
-  // Functions
 
-  const createUser = async (e: ChangeEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    await addUser({
-      variables: {
-        name: formState.name,
-        email: formState.email,
-        hashedPassword: formState.hashedPassword,
-      },
-    });
-  };
-  // Render
+  // Functions
 
   const RenderError = ({ err }: ApolloError | any): JSX.Element => {
     return (
@@ -43,6 +32,8 @@ export default function InscriptionForm(): JSX.Element {
   const RenderLoading = (): JSX.Element => {
     return <h1>Loading...</h1>;
   };
+
+  // Render
   if (error) {
     return <RenderError err={error} />;
   }
@@ -50,7 +41,7 @@ export default function InscriptionForm(): JSX.Element {
     return <RenderLoading />;
   }
   return (
-    <div className="w-full h-screen flex items-center">
+    <div>
       <form
         className="w-full"
         onSubmit={async (e) => {

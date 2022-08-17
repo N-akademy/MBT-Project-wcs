@@ -18,7 +18,6 @@ export default function App() {
 
   const middleware = new ApolloLink((operation: any, forward: any) => {
     const cookie = getCookie('token');
-    console.log(cookie);
     if (cookie !== '') {
       operation.setContext({
         headers: {

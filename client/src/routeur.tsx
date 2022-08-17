@@ -6,16 +6,16 @@ import {
   useLocation,
 } from 'react-router-dom';
 import HomePage from './Pages/HomePage';
-import ConnexionPage from './Pages/ConnexionPage';
-import InscriptionPage from './Pages/InscriptionPage';
-import UserListPage from './Pages/UserListPage';
-import UserParamsPage from './Pages/UserParamsPage';
-import TicketCreationPage from './Pages/TicketCreationPage';
-import TicketDetailPage from './Pages/TicketDetailPage';
-import TicketListPage from './Pages/TicketListPage';
-import ProjectCreationPage from './Pages/ProjetCreationPage';
-import ProjetDetailsPage from './Pages/ProjetDetailsPage';
-import ProjectListPage from './Pages/ProjectListPage';
+import ConnexionPage from './Pages/User/ConnexionPage';
+import InscriptionPage from './Pages/User/InscriptionPage';
+import UserListPage from './Pages/User/UserListPage';
+import UserParamsPage from './Pages/User/UserParamsPage';
+import TicketCreationPage from './Pages/Ticket/TicketCreationPage';
+import TicketDetailPage from './Pages/Ticket/TicketDetailPage';
+import TicketListPage from './Pages/Ticket/TicketListPage';
+import ProjectCreationPage from './Pages/Project/ProjetCreationPage';
+import ProjetDetailsPage from './Pages/Project/ProjetDetailsPage';
+import ProjectListPage from './Pages/Project/ProjectListPage';
 
 // Helpers
 function PrivateRoute({ children }: { children: JSX.Element }) {
@@ -85,7 +85,7 @@ function Routeur() {
           }
         />
         <Route
-          path="/ticketDetails"
+          path="/ticketDetails/:id"
           element={
             <PrivateRoute>
               <TicketDetailPage />

@@ -1,8 +1,7 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-
-import defaultPP from "../Statics/DefaultPP.svg";
-import logo from "../Statics/Capture52.svg";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import defaultPP from '../../Statics/DefaultPP.svg';
+import logo from '../../Statics/Capture52.svg';
 
 function Navbar(): JSX.Element {
   let navigate = useNavigate();
@@ -14,35 +13,35 @@ function Navbar(): JSX.Element {
         className="logo"
         src={logo}
         alt="logo"
-        onClick={() => navigate("/", { replace: true })}
+        onClick={() => navigate('/', { replace: true })}
       />
       <button
         id="goProjects"
         className="font-semibold text-xl text-white font-bold"
-        onClick={() => navigate("/projetList", { replace: true })}
+        onClick={() => navigate('/projetList', { replace: true })}
       >
         Projects
       </button>
       <button
-        id="goLogin"
+        id="goTickets"
         className="font-semibold text-xl text-white font-bold"
-        onClick={() => navigate("/login", { replace: true })}
+        onClick={() => navigate('/ticketlist', { replace: true })}
       >
-        Login
+        Tickets
       </button>
       <button
-        id="goRegister"
+        id="goProjects"
         className="font-semibold text-xl text-white font-bold"
-        onClick={() => navigate("/register", { replace: true })}
+        onClick={() => navigate('/userlist', { replace: true })}
       >
-        Register
+        Users
       </button>
       <img
         id="goUserParams"
         className="default-pp h-12"
         src={defaultPP}
         alt="PP"
-        onClick={() => navigate("/userparam", { replace: true })}
+        onClick={() => navigate('/userparam', { replace: true })}
       />
     </nav>
   );

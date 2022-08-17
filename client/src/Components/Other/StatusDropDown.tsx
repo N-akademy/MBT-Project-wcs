@@ -6,7 +6,7 @@ import {
   modalBackgroundStyle,
   modalStyle,
   buttonStyle,
-} from 'Styles/style';
+} from '../../Styles/style';
 
 function StatusDropDown(props: any): JSX.Element {
   // State

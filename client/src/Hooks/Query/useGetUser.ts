@@ -1,5 +1,5 @@
-import { gql, useQuery } from "@apollo/client";
-import IUser from "../Interfaces/IProject";
+import { gql, useQuery } from '@apollo/client';
+import IUser from '../../Interfaces/IProject';
 
 export const GET_USER = gql`
   query getAllUsers {

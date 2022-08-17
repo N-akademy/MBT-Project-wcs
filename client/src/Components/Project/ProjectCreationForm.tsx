@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import moment from 'moment';
 import { ApolloError, useMutation } from '@apollo/client';
-import { CREATE_PROJECT } from '../Hooks/useCreateProject';
-import UsersDropDown from './UsersDropDown';
-import StatusDropDown from './StatusDropDown';
+import { CREATE_PROJECT } from '../../Hooks/Mutation/useCreateProject';
+import UsersDropDown from '../User/UsersDropDown';
+import StatusDropDown from '../Other/StatusDropDown';
 import {
   formContainerStyle,
   cardStyle,
@@ -11,7 +11,7 @@ import {
   labelStyle,
   buttonStyle,
   inputContainerStyle,
-} from '../Styles/style';
+} from '../../Styles/style';
 
 function ProjectCreationForm(): JSX.Element {
   const dateFormat = 'yyyy-MM-DD';
