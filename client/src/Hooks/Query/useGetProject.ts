@@ -14,13 +14,13 @@ export const GET_PROJECT = gql`
   }
 `;
 
-export const useGetProject = (): IProjet[] => {
+export const useGetProject = (): IProjet[] | null => {
   const { loading, error, data } = useQuery(GET_PROJECT);
   if (loading) {
-    return [];
+    return null;
   } else if (error) {
     console.log(error);
-    return [];
+    return null;
   }
   return data.getAllProjects;
 };

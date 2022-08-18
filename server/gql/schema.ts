@@ -88,6 +88,7 @@ export const typeDefs = gql`
     #//? TICKET QUERIES
     getAllTickets: [Ticket]
     getTicketById(id: ID): Ticket
+    getAllTicketFiltered(Users: Int, projectId: Int): [Ticket]
   }
   #//* ----------------  END DEFINING QUERIES  ---------------- *//
 
@@ -103,6 +104,8 @@ export const typeDefs = gql`
 
   input TicketInput {
     id: ID!
+    Users: Int
+    projectId: Int
   }
 
   input CommentInput {

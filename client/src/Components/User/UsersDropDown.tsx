@@ -9,7 +9,7 @@ import {
 function UsersDropDown(props: any): JSX.Element {
   const data = useGetUsers();
 
-  if (data.length === 0) {
+  if (!data || data.length === 0) {
     return <p>No Users in DB :/</p>;
   }
 

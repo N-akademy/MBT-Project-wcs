@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 
 const ProjectListPage = (): JSX.Element => {
   const navigate = useNavigate();
-  const projects: IProjet[] = useGetProject();
+  const projects: IProjet[] | null = useGetProject();
   return (
     <div {...pageWrapper}>
       <Navbar />

@@ -1,5 +1,5 @@
 import { gql, useQuery } from '@apollo/client';
-import IUser from '../../Interfaces/IProject';
+import IUser from '../../Interfaces/IUser';
 
 export const GET_USER = gql`
   query getAllUsers {
@@ -10,13 +10,13 @@ export const GET_USER = gql`
   }
 `;
 
-export const useGetUsers = (): IUser[] => {
+export const useGetUsers = (): IUser[] | null => {
   const { loading, error, data } = useQuery(GET_USER);
   if (loading) {
-    return [];
+    return null;
   } else if (error) {
     console.log(error);
-    return [];
+    return null;
   }
   return data.getAllUsers;
 };

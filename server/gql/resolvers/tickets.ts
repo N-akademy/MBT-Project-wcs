@@ -27,6 +27,21 @@ export const tickets = {
         },
       });
     },
+    //? GET ALL TICKET FILTERED
+    getAllTicketFiltered: async (_: any, args: any) => {
+      console.log(args);
+      return await db.Ticket.findMany({
+        where: {
+          Users: { some: { id: Number(args.Users) } },
+          projectId: Number(args.projectId),
+        },
+        include: {
+          Project: true,
+          Comments: true,
+          Users: true,
+        },
+      });
+    },
   },
   //* ----------------  TICKET MUTATIONS  ---------------- //
   Mutation: {

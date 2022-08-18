@@ -1,14 +1,20 @@
 import React from 'react';
 import ITicket from 'Interfaces/ITicket';
 import TicketItem from './TicketItem';
+import { useFilterTicket } from '../../Hooks/Query/useFilterTicket';
 import { ticketListContainer } from '../../Styles/style';
+import IFilter from '../../Interfaces/IFilter';
 
 interface IProps {
-  tickets: ITicket[] | null;
+  filters: IFilter;
 }
 
-function TicketList(props: IProps): JSX.Element {
-  const { tickets } = props;
+function FilteredTicketList({ filters }: IProps): JSX.Element {
+  const tickets: ITicket[] | null = useFilterTicket(
+    filters.project,
+    filters.user
+  );
+
   if (!tickets || tickets?.length < 1) {
     return <p>No tickets :/</p>;
   }
@@ -21,4 +27,4 @@ function TicketList(props: IProps): JSX.Element {
   );
 }
 
-export default TicketList;
+export default FilteredTicketList;

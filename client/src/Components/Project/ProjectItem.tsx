@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import IProjet from '../../Interfaces/IProject';
 import '../../Styles/index.css';
-import logo from '../Statics/project.jpg';
+import logo from '../../Statics/Capture52.svg';
 import {
   projectItemWrapper,
   projectHeaderStyle,
