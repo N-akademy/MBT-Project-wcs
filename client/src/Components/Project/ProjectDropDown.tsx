@@ -1,5 +1,5 @@
 import React from 'react';
-import { useGetUsers } from '../../Hooks/Query/useGetUser';
+import { useGetProject } from '../../Hooks/Query/useGetProject';
 import {
   inputContainerStyle,
   labelStyle,
@@ -10,26 +10,26 @@ interface IProps {
   callback: Function;
 }
 
-function UsersDropDown({ callback }: IProps): JSX.Element {
-  const data = useGetUsers();
+function ProjectDropDown({ callback }: IProps): JSX.Element {
+  const data = useGetProject();
 
   if (!data || data.length === 0) {
-    return <p>No Users in DB :/</p>;
+    return <p>No Project in DB :/</p>;
   }
 
   return (
     <div {...inputContainerStyle}>
-      <label htmlFor="users" {...labelStyle}>
-        Select Members
+      <label htmlFor="projects" {...labelStyle}>
+        Select Project
       </label>
       <select
-        id="users"
+        id="projects"
         onChange={(e: any) => callback(e.target.value)}
         {...inputStyle}
       >
-        {data.map((user: any) => (
-          <option key={user.id} value={user.id}>
-            {user.name}
+        {data.map((proj: any) => (
+          <option key={proj.id} value={proj.id}>
+            {proj.title}
           </option>
         ))}
       </select>
@@ -37,4 +37,4 @@ function UsersDropDown({ callback }: IProps): JSX.Element {
   );
 }
 
-export default UsersDropDown;
+export default ProjectDropDown;

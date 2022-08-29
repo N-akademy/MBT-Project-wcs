@@ -59,6 +59,7 @@ export default function InscriptionForm(): JSX.Element {
           <div className="w-2/3 flex flex-col py-2">
             <label className="pb-1">Name</label>
             <input
+              id="name"
               className="border border-gray-400 rounded p-1"
               value={formState.name}
               placeholder="Your Name"
@@ -73,6 +74,7 @@ export default function InscriptionForm(): JSX.Element {
           <div className="w-2/3 flex flex-col py-2">
             <label className="pb-1">Email</label>
             <input
+              id="email"
               className="border border-gray-400 rounded p-1"
               value={formState.email}
               placeholder="📧 you@example.com"
@@ -87,6 +89,7 @@ export default function InscriptionForm(): JSX.Element {
           <div className="w-2/3 flex flex-col py-2">
             <label className="pb-1">Password</label>
             <input
+              id="password"
               className="border border-gray-400 rounded p-1"
               value={formState.hashedPassword}
               placeholder="🔑"
@@ -94,6 +97,7 @@ export default function InscriptionForm(): JSX.Element {
                 setFormState({
                   ...formState,
                   hashedPassword: e.target.value,
+                  //TODO: why confirm if the second input do nothing ?
                 });
               }}
             />
@@ -101,12 +105,14 @@ export default function InscriptionForm(): JSX.Element {
           <div className="w-2/3 flex flex-col py-2">
             <label className="pb-1">Confirm Password</label>
             <input
+              id="redopassword"
               className="border border-gray-400 rounded p-1"
               placeholder="🗝️"
             />
           </div>
           <div className="w-2/3 flex flex-col pt-8">
             <button
+              id="send"
               type="submit"
               className="border border-gray-400 p-1 rounded"
             >

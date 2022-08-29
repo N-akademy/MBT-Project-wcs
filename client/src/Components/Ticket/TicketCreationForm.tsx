@@ -14,6 +14,7 @@ import {
   customCardStyle,
   popUpContainerStyle,
 } from '../../Styles/style';
+import ProjectDropDown from 'Components/Project/ProjectDropDown';
 
 function TicketCreationForm(): JSX.Element {
   // State
@@ -184,20 +185,7 @@ function TicketCreationForm(): JSX.Element {
         </div>
       </div>
       <div id="middle" {...customCardStyle}>
-        <div {...inputContainerStyle}>
-          <label htmlFor="tskProject" {...labelStyle}>
-            Select Project
-          </label>
-          <select
-            id="tskProject"
-            onChange={(e: any) => HandleProjectChanges(e)}
-            {...inputStyle}
-          >
-            <option value="1">Projet A</option>
-            <option value="2">Projet B</option>
-            <option value="3">show more...</option>
-          </select>
-        </div>
+        <ProjectDropDown callback={HandleProjectChanges} />
         <UsersDropDown callback={HandleMembersChanges} />
         <div id="difficultyRadio" {...inputContainerStyle}>
           <h5 {...labelStyle}>Select Difficulty</h5>
