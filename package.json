@@ -12,10 +12,10 @@
   ],
   "scripts": {
     "start": "concurrently \"yarn workspace server start\" \"yarn workspace client start\"",
-    "cy:run": "cypress run",
-    "test": "start-server-and-test start http://localhost:3000 cy:run",
     "up": "docker compose -f docker-compose.yml up -d --build",
-    "down": "docker-compose -f docker-compose.yml down"
+    "down": "docker-compose -f docker-compose.yml down",
+    "cypress": "cd ./client && yarn cypress open",
+    "test": "cd ./client && yarn test"
   },
   "devDependencies": {
     "concurrently": "^7.1.0"
