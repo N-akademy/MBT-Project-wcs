@@ -13,6 +13,8 @@ jobs:
         uses: actions/checkout@v2
       - name: Build
         run: cd client && docker build -t cyrheel/wns-client .
+      - name: Login
+        run: docker/login-action@v1
       - name: Send to DockerHUB
         run: docker push cyrheel/wns-client
 
@@ -23,5 +25,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Build
         run: cd server && docker build -t cyrheel/wns-server .
+      - name: Login
+        run: docker/login-action@v1
       - name: Send to DockerHUB
         run: docker push cyrheel/wns-server
