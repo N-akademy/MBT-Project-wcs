@@ -1,0 +1,27 @@
+name: deploy-client-staging
+
+on:
+  push:
+    branches:
+      - "staging"
+
+jobs:
+  build-client-image:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+      - name: Build
+        run: cd client && docker build -t cyrheel/wns-client .
+      - name: Send to DockerHUB
+        run: docker push cyrheel/wns-client
+
+  build-server-image:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+      - name: Build
+        run: cd server && docker build -t cyrheel/wns-server .
+      - name: Send to DockerHUB
+        run: docker push cyrheel/wns-server
