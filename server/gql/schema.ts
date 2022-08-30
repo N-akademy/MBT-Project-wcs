@@ -1,8 +1,8 @@
-const { gql } = require('apollo-server');
+import { gql } from 'apollo-server-express';
 import { GraphQLScalarType } from 'graphql';
 const db = require('../db');
 
-const typeDefs = gql`
+export const typeDefs = gql`
   scalar Date
   #//* ----------------  START DEFINING TYPES  ---------------- *//
   type User {
@@ -26,7 +26,7 @@ const typeDefs = gql`
     description: String
     start_time: Date!
     end_time: Date
-    status: String
+    status: String # StatusEnum
     #//! Foreign Key
     #//* One To One
     Project_Picture: Picture
@@ -42,13 +42,13 @@ const typeDefs = gql`
     description: String
     estimated_time: Int
     spent_time: Int
-    status: String
+    status: String # StatusEnum
     labels: String
     priority: String
     difficulty: String
     #//! Foreign Key
     #//* Many To One
-    projectId: ID
+    projectId: Int!
     #//* Many To Many
     Comments: [Comment]
     Users: [User]
@@ -70,8 +70,8 @@ const typeDefs = gql`
     modified_at: Date
     #//! Foreign Key
     #//* Many To Many
-    Users: [User]
-    Tickets: [Ticket]
+    Users: [User]!
+    Tickets: [Ticket]!
   }
   #//* ----------------  END DEFINING TYPES  ---------------- *//
 
@@ -88,10 +88,12 @@ const typeDefs = gql`
     #//? TICKET QUERIES
     getAllTickets: [Ticket]
     getTicketById(id: ID): Ticket
+    getAllTicketFiltered(Users: Int, projectId: Int): [Ticket]
   }
   #//* ----------------  END DEFINING QUERIES  ---------------- *//
 
   #//* ----------------  START DEFINING INPUTS  ---------------- *//
+
   input UserInput {
     id: ID!
   }
@@ -102,6 +104,8 @@ const typeDefs = gql`
 
   input TicketInput {
     id: ID!
+    Users: Int
+    projectId: Int
   }
 
   input CommentInput {
@@ -112,13 +116,21 @@ const typeDefs = gql`
     id: ID!
   }
   #//* ----------------  END DEFINING INPUTS  ---------------- *//
-
+  #//* ----------------  START DEFINING ENUM  ---------------- *//
+  #enum StatusEnum {
+  #  OPEN
+  #  IN_PROGRESS
+  #  CLOSE
+  #}
+  #//* ----------------  END DEFINING ENUM  ---------------- *//
   #//* ----------------  START DEFINING MUTATIONS  ---------------- *//
   type Mutation {
+    #//? AUTH QUERIES
+    login(email: String!, hashedPassword: String!): String
+
     #//* ALL FUNCTION FOR USER
     #//? CREATE A NEW USER
     createNewUser(
-      id: ID!
       name: String!
       email: String!
       hashedPassword: String!
@@ -142,17 +154,16 @@ const typeDefs = gql`
     #//* ALL FUNCTION FOR PROJECT
     #//? CREATE A NEW PROJECT
     createNewProject(
-      id: ID!
       title: String!
       description: String
       start_time: Date!
       end_time: Date
-      status: String
+      status: String # StatusEnum
       #//! Foreign Key
       #//* One To One
       Project_Picture: PictureInput
       #//* Many To Many
-      Users: [UserInput]
+      Users: [UserInput]!
     ): Project
 
     #// ? UPDATE A PROJECT
@@ -162,35 +173,33 @@ const typeDefs = gql`
       description: String
       start_time: Date
       end_time: Date
-      status: String
-      Users: [UserInput]
+      status: String #StatusEnum
     ): Project
 
     #//? DELETE A PROJECT
     deleteProjectById(id: ID!): Project
 
     #//? REMOVE USER FROM A PROJECT
-    removeUserFromProject(id: ID!): Project
+    removeUserFromProject(id: ID!, Users: [UserInput]): Project
 
     #//? ASSIGN USER TO A PROJECT
-    assignUserToProject(id: ID!): Project
+    assignUserToProject(id: ID!, Users: [UserInput]): Project
 
     #//* ALL FUNCTIONS FOR TICKET
     #//? CREATE A NEW TICKET
     createNewTicket(
-      id: ID!
       title: String!
       description: String
       estimated_time: Int
       spent_time: Int
-      status: String
+      status: String # StatusEnum
       labels: String
       priority: String
       difficulty: String
       #//! Foreign Key
       #//* Many To One
       #Project: ProjectInput
-      projectId: Int
+      projectId: Int!
       #//* Many To Many
       #Comments: CommentInput
       Users: [UserInput]
@@ -203,7 +212,7 @@ const typeDefs = gql`
       description: String
       estimated_time: Int
       spent_time: Int
-      status: String
+      status: String # StatusEnum
       labels: String
       priority: String
       difficulty: String
@@ -230,8 +239,6 @@ const dateScalar = new GraphQLScalarType({
     return value.toISOString();
   },
 });
-
-export default typeDefs;
 
 /*
 {

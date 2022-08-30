@@ -1,6 +1,7 @@
 const db = require('../../db');
+import IUsers from '../Interfaces/IUsers';
 
-//# : for projects : delete projects / update projects
+//TODO : for projects : delete projects / update projects
 export const projects = {
   //* ----------------  PROJECT QUERIES  ---------------- *//
   Query: {
@@ -28,15 +29,8 @@ export const projects = {
   Mutation: {
     //? CREATE A NEW PROJECT
     createNewProject: async (_: any, args: any) => {
-      // Add getCurrentUser() && Get User's Infos
-      const user = await db.User.findUnique({
-        where: {
-          id: Number(args.Users.id),
-        },
-      });
       return await db.Project.create({
         data: {
-          id: Number(args.id),
           title: args.title,
           description: args.description,
           start_time: args.start_time,
@@ -44,7 +38,7 @@ export const projects = {
           status: args.status,
           Project_Picture: args.Project_Picture,
           Users: {
-            connect: args.Users.map(({ id }) => {
+            connect: args.Users.map(({ id }: any) => {
               return { id: Number(id) };
             }),
           },
@@ -80,7 +74,7 @@ export const projects = {
         where: { id: Number(args.id) },
         data: {
           Users: {
-            disconnect: args.Users?.map(({ id }) => {
+            disconnect: args.Users?.map(({ id }: IUsers) => {
               return { id: Number(id) };
             }),
           },
@@ -94,7 +88,7 @@ export const projects = {
         where: { id: Number(args.id) },
         data: {
           Users: {
-            connect: args.Users?.map(({ id }) => {
+            connect: args.Users?.map(({ id }: IUsers) => {
               return { id: Number(id) };
             }),
           },

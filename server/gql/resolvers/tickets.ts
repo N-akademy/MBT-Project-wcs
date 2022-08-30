@@ -1,6 +1,7 @@
 const db = require('../../db');
+import IUser from '../Interfaces/IUsers';
 
-//# : TICKETS DONE ✅!
+//DONE : TICKETS DONE ✅!
 
 export const tickets = {
   //* ----------------  TICKET QUERIES  ---------------- *//
@@ -26,6 +27,20 @@ export const tickets = {
         },
       });
     },
+    //? GET ALL TICKET FILTERED
+    getAllTicketFiltered: async (_: any, args: any) => {
+      return await db.Ticket.findMany({
+        where: {
+          Users: { some: { id: Number(args.Users) } },
+          projectId: Number(args.projectId),
+        },
+        include: {
+          Project: true,
+          Comments: true,
+          Users: true,
+        },
+      });
+    },
   },
   //* ----------------  TICKET MUTATIONS  ---------------- //
   Mutation: {
@@ -33,7 +48,6 @@ export const tickets = {
     createNewTicket: async (_: any, args: any) => {
       return await db.Ticket.create({
         data: {
-          id: Number(args.id),
           title: args.title,
           description: args.description,
           estimated_time: args.estimated_time,
@@ -44,7 +58,7 @@ export const tickets = {
           difficulty: args.difficulty,
           projectId: Number(args.projectId),
           Users: {
-            connect: args.Users.map(({ id }) => {
+            connect: args.Users?.map(({ id }: any) => {
               return { id: Number(id) };
             }),
           },
@@ -82,7 +96,7 @@ export const tickets = {
         where: { id: Number(args.id) },
         data: {
           Users: {
-            disconnect: args.Users?.map(({ id }) => {
+            disconnect: args.Users?.map(({ id }: IUser) => {
               return { id: Number(id) };
             }),
           },
@@ -96,7 +110,7 @@ export const tickets = {
         where: { id: Number(args.id) },
         data: {
           Users: {
-            connect: args.Users?.map(({ id }) => {
+            connect: args.Users?.map(({ id }: IUser) => {
               return { id: Number(id) };
             }),
           },

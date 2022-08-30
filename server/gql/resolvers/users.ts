@@ -1,8 +1,8 @@
 const db = require('../../db');
 const argon2 = require('argon2');
-
+const { ApolloError } = require('apollo-server');
 //DONE : USER IS DONE! ✅ (LOGIN IS MISSING)
-//ERROR : ERRROOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOR
+
 //* ---------------- OPTIONS HASHING PASSWORD ---------------- *//
 const hashingOptions = {
   memoryCost: 2 ** 16,
@@ -12,12 +12,15 @@ const hashingOptions = {
 
 //* ---------------- HASH PASSWORD ---------------- *//
 
-const hashPassword = (pianPassword) => {
-  return argon2.hash(pianPassword, hashingOptions);
+const hashPassword = (plainPassword: string) => {
+  return argon2.hash(plainPassword, hashingOptions);
 };
 
 //* ---------------- CHECK PASSWORD ---------------- *//
-const verifyPassword = (plainPassword, hashedPassword) => {
+export const verifyPassword = (
+  plainPassword: string,
+  hashedPassword: string
+) => {
   return argon2.verify(hashedPassword, plainPassword, hashingOptions);
 };
 
@@ -25,13 +28,17 @@ export const users = {
   //* ----------------  USER QUERIES  ---------------- *//
   Query: {
     //? GET ALL USERS
-    getAllUsers: async () => {
-      return await db.User.findMany({
-        include: {
-          Projects: true,
-          Tickets: true,
-        },
-      });
+    getAllUsers: async (parents: any, args: any, context: any, info: any) => {
+      if (context.authenticatedUserEmail) {
+        return await db.User.findMany({
+          include: {
+            Projects: true,
+            Tickets: true,
+          },
+        });
+      } else {
+        throw new ApolloError('Invalid auth');
+      }
     },
 
     //? GET A USER
@@ -52,7 +59,6 @@ export const users = {
       const hashedPassword = await hashPassword(args.hashedPassword);
       return await db.User.create({
         data: {
-          id: Number(args.id),
           name: args.name,
           email: args.email,
           hashedPassword,
