@@ -7,7 +7,7 @@ function HomePage(): JSX.Element {
   return (
     <div>
       <Navbar />
-      <h2 {...h2Style}>Dashboard</h2>
+      <h2 {...h2Style}>Dash board</h2>
       <Dashboard />
     </div>
   );

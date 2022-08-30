@@ -8,5 +8,7 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@v2
+      - name: Compose Up
+        run: yarn up
       - name: Goto client and run tests
-        run: cd client && yarn test
+        run: yarn && cd client && yarn test
